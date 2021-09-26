@@ -14,13 +14,10 @@ public class Tables {
 	
 	// method for interacting with the user
 	public static void working() throws IOException {
-		
 		if (Tables.condition == false) {
 			important();
 		}
-		
 		out("\nDo you want to continue (yes/no):");
-		
 		try {
 			Tables.response = input();
 		} catch (Exception e) {
