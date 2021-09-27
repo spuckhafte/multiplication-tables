@@ -1,10 +1,12 @@
 import java.io.*;
+import java.lang.Thread;
 public class Tables {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		try {
 			working();
 		} catch (Exception e) {
 			out("Wrong Input, Try again!\n");
+			Thread.sleep(100);
 			main(args);
 		}
 	}
@@ -13,11 +15,14 @@ public class Tables {
 	static String response = null;
 	
 	// method for interacting with the user
-	public static void working() throws IOException {
+	public static void working() throws IOException, InterruptedException {
+		
 		if (Tables.condition == false) {
 			important();
 		}
+		
 		out("\nDo you want to continue (yes/no):");
+		
 		try {
 			Tables.response = input();
 		} catch (Exception e) {
@@ -26,31 +31,31 @@ public class Tables {
 			return;
 		}
 		
-		if (response.equals("yes")) {
+		switch(response) {
+		case "yes":
 			out("");
 			Tables.condition = false;
 			working();
-		}
-		else if(response.equals("no")) { 
+		case "no":
 			out("\nCome again another day!");
-			return;
-		}
-		else {
+			break;
+		default:
 			out("\nWrong Input, Try Again!");
+			Thread.sleep(100);
 			Tables.condition = true;
 			working();
-			return;
 		}
 	}
 	
 	// most important method, uses all the methods for fruit-full output
-	public static void important() throws IOException {
+	public static void important() throws IOException, InterruptedException {
 			out("Which Table: ");
 			int table_number = In();
 			int i = 1;
 			out("\nMultiplication Table of "+Integer.toString(table_number)+":");
 			while(i<=10) {
 				out(Integer.toString(table_number)+" x "+Integer.toString(i)+" = "+Integer.toString(table_number*i));
+				Thread.sleep(200);
 				i=i+1;
 			}
 	}
@@ -75,25 +80,3 @@ public class Tables {
 		return integer;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
